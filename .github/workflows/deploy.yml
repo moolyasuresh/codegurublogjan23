@@ -50,12 +50,12 @@ jobs:
           name: build-file
           path: ${{ env.applicationfolder }}/target/*.war           
 
-codescan:
+  codescan:
     needs: build
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: write
+      contents: read
       security-events: write
 
     steps:
