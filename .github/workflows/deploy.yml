@@ -99,7 +99,7 @@ jobs:
       uses: github/codeql-action/upload-sarif@v1
       with:
         sarif_file: codeguru-results.sarif.json
-    - name: Check for critical volnurability
+
     - run: |
         CNT=$(cat ./codeguru-results.sarif.json |jq '.[] | select(.severity=="Critical")|.severity' | wc -l)
         if (( $CNT > 0 )); then
