@@ -104,7 +104,7 @@ jobs:
       uses: actions/download-artifact@v3
       with: 
         name: SARIF_recommendations
-      run: |
+    - run: |
           ls -R
           cat ./codeguru-results.sarif.json
           CNT=$(cat ./codeguru-results.sarif.json |jq '.[] | select(.severity=="Critical")|.severity' | wc -l)'
