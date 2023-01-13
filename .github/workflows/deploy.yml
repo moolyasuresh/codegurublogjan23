@@ -101,7 +101,6 @@ jobs:
         sarif_file: codeguru-results.sarif.json
     
     - name: Upload review result
-    - uses: actions/checkout@v2
     - run: |
         cat ./codeguru-results.sarif.json
         CNT=$(cat ./codeguru-results.sarif.json |jq '.[] | select(.severity=="Critical")|.severity' | wc -l)'
