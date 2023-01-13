@@ -99,12 +99,15 @@ jobs:
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: codeguru-results.sarif.json
+      run: cat  codeguru-results.sarif.json
     
 
     - run: |
           ls -R
           echo "opening results"
           cat ./codeguru-results.sarif.json
+          echo "opening 2nd results"
+          cat codeguru-results.sarif.json
           CNT=$(cat ./codeguru-results.sarif.json |jq '.[] | select(.severity=="Critical")|.severity' | wc -l)
           if (( $CNT > 0 )); then
             echo "Critical findings discovered. Failing."
