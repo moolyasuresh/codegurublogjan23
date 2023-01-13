@@ -106,6 +106,7 @@ jobs:
         name: SARIF_recommendations
     - run: |
           ls -R
+          sudo chown -R $USER:$GROUP ./codeguru-results.sarif.json
           cat ./codeguru-results.sarif.json
           CNT=$(cat ./codeguru-results.sarif.json |jq '.[] | select(.severity=="Critical")|.severity' | wc -l)'
           if (( $CNT > 0 )); then
