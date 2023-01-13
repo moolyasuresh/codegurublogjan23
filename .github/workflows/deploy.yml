@@ -101,13 +101,14 @@ jobs:
         sarif_file: codeguru-results.sarif.json
     
     - name: Upload review result
-    - run: |
-        cat ./codeguru-results.sarif.json
-        CNT=$(cat ./codeguru-results.sarif.json |jq '.[] | select(.severity=="Critical")|.severity' | wc -l)'
-        if (( $CNT > 0 )); then
-          echo "Critical findings discovered. Failing."
-          exit 1
-        fi
+      uses: actions/checkout@v2
+      - run: |
+          cat ./codeguru-results.sarif.json
+          CNT=$(cat ./codeguru-results.sarif.json |jq '.[] | select(.severity=="Critical")|.severity' | wc -l)'
+          if (( $CNT > 0 )); then
+            echo "Critical findings discovered. Failing."
+            exit 1
+          fi
   deploy:
     needs: codescan
     runs-on: ubuntu-latest
