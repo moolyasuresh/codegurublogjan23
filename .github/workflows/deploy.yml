@@ -105,9 +105,7 @@ jobs:
           ls -R
           echo "opening results"
           cat ./codeguru-results.sarif.json
-          echo "opening 2nd results"
-          cat /github/workspace/codeguru-results.sarif.json
-          CNT=$(cat ./codeguru-results.sarif.json |jq '.[] | select(.severity=="Critical")|.severity' | wc -l)
+          CNT=$(cat ./codeguru-results.sarif.json |jq '.[] | select(.level=="error")|.level' | wc -l)
           if (( $CNT > 0 )); then
             echo "Critical findings discovered. Failing."
             exit 1
