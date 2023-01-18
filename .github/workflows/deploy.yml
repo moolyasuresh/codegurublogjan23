@@ -102,12 +102,11 @@ jobs:
     
 
     - run: |
-          ls -R
-          echo "opening results"
-          cat ./codeguru-results.sarif.json
+          
+          echo "Check for critical volnurability"
           count=$(cat codeguru-results.sarif.json | jq '.runs[].results[] | select(.level == "error") | .level' | wc -l)
           if (( $count > 0 )); then
-            echo "Critical findings discovered. Failing."
+            echo "There are $count critical findings, hence stopping the pipeline."
             exit 1
           fi
   deploy:
