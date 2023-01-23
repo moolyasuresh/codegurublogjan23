@@ -1,13 +1,15 @@
 name: Build and Deploy
 
 on:
-  workflow_dispatch: {}
+  push:
+    branches: [ main ]
+  pull_request:
 
 env:
   applicationfolder: spring-boot-hello-world-example
   AWS_REGION: us-east-2
   S3BUCKET: codegurublogteststack-webappdeploymentbucket-1n2pl5a6liyfs
-  S3bucket_CodeGuru: codeguru-reviewer-testcodegurublog
+  S3bucket_CodeGuru: codeguru-reviewer-testcodegurublog # S3 Bucket with "codeguru-reviewer-*" prefix
 
 
 jobs:
@@ -84,7 +86,7 @@ jobs:
       if: ${{ always() }} 
       continue-on-error: false
       with:          
-        s3_bucket: ${{ env.S3bucket_CodeGuru }}
+        s3_bucket: ${{ env.S3bucket_CodeGuru }} 
         build_path: .
 
     - name: Store SARIF file
