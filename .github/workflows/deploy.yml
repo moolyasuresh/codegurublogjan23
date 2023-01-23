@@ -79,7 +79,7 @@ jobs:
       with:
         fetch-depth: 0 
 
-    - name: CodeGuru Reviewer
+    - name: Amazon CodeGuru Reviewer Scanner
       uses: aws-actions/codeguru-reviewer@v1.1
       if: ${{ always() }} 
       continue-on-error: false
@@ -95,7 +95,7 @@ jobs:
         path: ./codeguru-results.sarif.json
 
     - name: Upload review result
-      #if: steps.iam-role.outcome == 'success'
+      if: ${{ github.event_name != 'push' }}
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: codeguru-results.sarif.json
