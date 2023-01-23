@@ -9,7 +9,7 @@ env:
   applicationfolder: spring-boot-hello-world-example
   AWS_REGION: us-east-2
   S3BUCKET: codegurublogteststack-webappdeploymentbucket-1n2pl5a6liyfs
-  S3bucket_CodeGuru: codeguru-reviewer-testcodegurublog # S3 Bucket with "codeguru-reviewer-*" prefix
+  S3bucket_CodeGuru: codeguru-reviewer-testcodegurublog # S3 Bucket with "codeguru-reviewer-* " prefix
 
 
 jobs:
