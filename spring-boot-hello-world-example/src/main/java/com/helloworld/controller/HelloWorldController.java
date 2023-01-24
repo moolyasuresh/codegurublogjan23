@@ -12,6 +12,8 @@ public String hello()
 
     ByteArrayInputStream s = new ByteArrayInputStream("testinput".getBytes());
     System.out.println(s);
+    String KeyAPI = "Bearrer key";
+    System.out.println(KeyAPI);
 
     return "<h1> Congratulations. You have successfully deployed the sample Spring Boot Application. </h1>";
 }
